@@ -16,7 +16,9 @@ class _NewTransactionState extends State<NewTransaction> {
   DateTime _selectedDate;
 
   void _submitData() {
-    if(_amountController.text.isEmpty){return;}
+    if (_amountController.text.isEmpty) {
+      return;
+    }
 
     final enteredTitle = _titleController.text;
     final enteredAmount = double.parse(_amountController.text);
@@ -53,12 +55,21 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: (MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top) *
-                  0.4,
-      child: Card(
+
+    return SingleChildScrollView(
+          child: Card(
+        shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(25.0),
+        ),
+      ),
         child: Container(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.only(
+            top: 10,
+            left: 10,
+            right: 10,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 10 ,
+          ),
           child: Column(
             children: <Widget>[
               TextField(
