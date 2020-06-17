@@ -54,7 +54,8 @@ class _NewTransactionState extends State<NewTransaction> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: (MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top) *
+                  0.4,
       child: Card(
         child: Container(
           padding: EdgeInsets.all(10),
