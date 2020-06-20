@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import './adaptive_flat_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -55,7 +59,9 @@ class _NewTransactionState extends State<NewTransaction> {
 
   @override
   Widget build(BuildContext context) {
-
+    final mediaQuery = MediaQuery.of(context);
+    final themeContext = Theme.of(context);
+    
     return SingleChildScrollView(
           child: Card(
         shape: RoundedRectangleBorder(
@@ -68,7 +74,7 @@ class _NewTransactionState extends State<NewTransaction> {
             top: 10,
             left: 10,
             right: 10,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 10 ,
+            bottom: mediaQuery.viewInsets.bottom + 10 ,
           ),
           child: Column(
             children: <Widget>[
@@ -98,16 +104,7 @@ class _NewTransactionState extends State<NewTransaction> {
                             : 'Picked Date: ${DateFormat('d/M/y').format(_selectedDate)}',
                       ),
                     ),
-                    FlatButton(
-                      textColor: Theme.of(context).primaryColor,
-                      onPressed: _presentDatePicker,
-                      child: Text(
-                        'Choose Date',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                   AdaptiveFlatButton('Choose Date',_presentDatePicker)
                   ],
                 ),
               ),
@@ -115,7 +112,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 alignment: AlignmentDirectional.bottomCenter,
                 child: RaisedButton(
                   highlightElevation: 5,
-                  highlightColor: Theme.of(context).accentColor,
+                  highlightColor: themeContext.accentColor,
                   onPressed: _submitData,
                   child: Text(
                     'Add Transaction',
@@ -126,7 +123,7 @@ class _NewTransactionState extends State<NewTransaction> {
                         decorationStyle: TextDecorationStyle.solid,
                         decorationColor: Colors.black),
                   ),
-                  textColor: Theme.of(context).primaryColor,
+                  textColor: themeContext.primaryColor,
                   visualDensity: VisualDensity.compact,
                 ),
               ),

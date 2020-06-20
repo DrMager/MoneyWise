@@ -11,12 +11,15 @@ class TransactionsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final themeContext = Theme.of(context);
+     
     return transactionsList.isEmpty
         ? LayoutBuilder(builder: (context, constraint) {
             return Column(
               children: <Widget>[
                 Text('No Transactions added yet',
-                    style: Theme.of(context).textTheme.headline6),
+                    style: themeContext.textTheme.headline6),
                 SizedBox(
                   height: 50,
                 ),
@@ -31,29 +34,29 @@ class TransactionsList extends StatelessWidget {
             itemBuilder: (ctx, index) {
               return Card(
                 elevation: 5,
-                shadowColor: Theme.of(context).accentColor,
+                shadowColor: themeContext.accentColor,
                 margin: EdgeInsets.symmetric(
                   vertical: 8,
                   horizontal: 20,
                 ),
                 child: ListTile(
-                  trailing: MediaQuery.of(context).size.width > 450
+                  trailing: mediaQuery.size.width > 450
                       ? FlatButton.icon(
                           onPressed: () => deleteTx(transactionsList[index].id),
-                          textColor: Theme.of(context).errorColor,
+                          textColor: themeContext.errorColor,
                           icon: Icon(Icons.delete),
                           label: Text('Delete'),
                         )
                       : IconButton(
                           icon: Icon(Icons.delete),
-                          color: Theme.of(context).errorColor,
+                          color: themeContext.errorColor,
                           onPressed: () => deleteTx(transactionsList[index].id),
                         ),
                   leading: Container(
                     height: 50,
                     width: 70,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColorLight,
+                      color: themeContext.primaryColorLight,
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Padding(
@@ -77,7 +80,7 @@ class TransactionsList extends StatelessWidget {
                     ),
                     child: Text(
                       '${transactionsList[index].title}',
-                      style: Theme.of(context).textTheme.headline6,
+                      style: themeContext.textTheme.headline6,
                     ),
                   ),
                   subtitle: Text(
